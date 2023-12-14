@@ -18,7 +18,7 @@ public class Main {
                 System.out.println("Pinkiğe gidebilirsiniz.");
             }
         }else{
-            System.out.println("Yüzmeye gidebilirsiniz");
+            System.out.println("Yüzmeye gidebilirsiniz.");
         }
     }
 }
