@@ -8,17 +8,18 @@ public class Main {
         System.out.println("Sıcaklığı giriniz: ");
         heat = input.nextInt();
 
-        if (heat < 5){
-            System.out.println("Kayak yapabilirsiniz.");
+        if (heat > 25){
+            System.out.println("yüzmeye gidebilirsiniz.");
         }else if (heat <= 25){
-            if(heat <= 15){
+            if(heat >= 5 && heat <= 15){
                 System.out.println("Sinemaya gidebilirsiniz.");
             }
             if(heat >= 10){
                 System.out.println("Pinkiğe gidebilirsiniz.");
             }
-        }else{
-            System.out.println("Yüzmeye gidebilirsiniz.");
+            if(heat < 5){
+                System.out.println("Kayak yapabilirsiniz");
+            }
         }
     }
 }
