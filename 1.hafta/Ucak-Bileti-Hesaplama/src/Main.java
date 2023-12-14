@@ -30,9 +30,7 @@ public class Main {
         altmisbesUstuYasBileti = hamBiletFiyati - altmisbesUstuIndirimMiktari;
 
         //gidiş dönüş dahil edip etmeme belirleme kısmı
-        if(yas < 0 || mesafeKm < 0){
-            System.out.println("hatalı veri girdiniz");
-        }else if(gidisDonus != 1 && gidisDonus != 2){
+        if(yas < 0 || mesafeKm < 0 || (gidisDonus != 1 && gidisDonus !=2)){
             System.out.println("hatalı veri girdiniz");
         }else if(yas < 12 && gidisDonus == 2){
             System.out.println((onikiYasBileti - (onikiYasBileti * gidisDonusIndirimi)) *2);
@@ -43,7 +41,7 @@ public class Main {
         }else if(yas >= 12 && yas < 24 && gidisDonus == 1){
             System.out.println(onikiYirmiDortYasBileti);
         }else if(yas >= 24 && yas <65 && gidisDonus == 2){
-            System.out.println(hamBiletFiyati - (hamBiletFiyati - gidisDonusIndirimi));
+            System.out.println((hamBiletFiyati - (hamBiletFiyati * gidisDonusIndirimi)) * 2);
         }else if(yas >=24 && yas <65 && gidisDonus == 1){
             System.out.println(hamBiletFiyati);
         }else if(yas >= 65 && gidisDonus == 2){
