@@ -5,7 +5,7 @@ public class Main {
         //değişkenler
         int yil;
 
-        //kullanıcıdan girdi alma
+        //Kullanıcıdan girdi alma
         Scanner input = new Scanner(System.in);
         System.out.println("Lütfen yılı giriniz: ");
         yil = input.nextInt();
