@@ -23,7 +23,7 @@ public class Main {
             if (sayilar[i] > max) {
                 max = sayilar[i];
             }
-        //en küçüğü kıyaslayarak bul, min olarak işaretle
+            //en küçüğü kıyaslayarak bul, min olarak işaretle
             if (sayilar[i] < min) {
                 min = sayilar[i];
             }
