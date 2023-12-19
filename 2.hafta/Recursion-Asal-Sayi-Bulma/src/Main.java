@@ -1,27 +1,26 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("1'den 100'e kadar asal sayılar:");
-        asalSayilariYazdir(2, 100);
-    }
+        int verilenSayi;
+        Scanner input = new Scanner(System.in);
+        verilenSayi = input.nextInt();
+        boolean asalMi = asalMi(verilenSayi, 2);
 
-    // Recursive method ile asal mı kontrolü
-    static boolean asalMi(int sayi, int bolen) {
-        if (bolen > Math.sqrt(sayi)) {
+        if (asalMi) {
+            System.out.println(verilenSayi + " asaldır.");
+        } else {
+            System.out.println(verilenSayi + " asal değildir.");
+        }
+    }
+    
+    static boolean asalMi(int verilenSayi, int bolen) {
+        if (bolen > Math.sqrt(verilenSayi)) {
             return true;
         }
-        if (sayi % bolen == 0) {
+        if (verilenSayi % bolen == 0) {
             return false;
         }
-        return asalMi(sayi, bolen + 1);
-    }
-
-    // Recursive method ile aralıktaki sayıları yazdırma
-    static void asalSayilariYazdir(int basla, int bitir) {
-        if (basla <= bitir) {
-            if (asalMi(basla, 2)) {
-                System.out.print(basla + " ");
-            }
-            asalSayilariYazdir(basla + 1, bitir);
-        }
+        return asalMi(verilenSayi, bolen + 1);
     }
 }
