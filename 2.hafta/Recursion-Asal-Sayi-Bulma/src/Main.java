@@ -13,7 +13,7 @@ public class Main {
             System.out.println(verilenSayi + " asal değildir.");
         }
     }
-    
+
     static boolean asalMi(int verilenSayi, int bolen) {
         if (bolen > Math.sqrt(verilenSayi)) {
             return true;
