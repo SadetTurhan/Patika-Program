@@ -1,6 +1,11 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-    methodByPattern(16,16,true);
+        Scanner input = new Scanner(System.in);
+        System.out.println("Sayı giriniz: ");
+        int n = input.nextInt();
+        methodByPattern(n,n,true);
     }
     public static void methodByPattern(int a,int b,boolean isDecreasing){
         if(a > 0 && isDecreasing){
