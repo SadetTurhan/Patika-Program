@@ -19,18 +19,18 @@ public class Student {
         this.isPass = false;
     }
 
-    public void addBulkExamNote(int mat, int fizik, int kimya) {
+    public void addBulkExamNote(int matWritten,int matVerbal, int fizikWritten,int fizikVerbal, int kimyaWritten,int kimyaVerbal) {
 
-        if (mat >= 0 && mat <= 100) {
-            this.mat.note = mat;
+        if (matWritten >= 0 && matWritten <= 100 && matVerbal >= 0 && matVerbal <= 100) {
+            this.mat.note = (matWritten * 0.8) + (matVerbal * 0.2);
         }
 
-        if (fizik >= 0 && fizik <= 100) {
-            this.fizik.note = fizik;
+        if (fizikWritten >= 0 && fizikWritten <= 100 && fizikVerbal >= 0 && fizikWritten <= 100) {
+            this.fizik.note = (fizikWritten * 0.8) + (fizikVerbal * 0.2);
         }
 
-        if (kimya >= 0 && kimya <= 100) {
-            this.kimya.note = kimya;
+        if (kimyaWritten >= 0 && kimyaWritten <= 100 && kimyaVerbal >= 0 && kimyaWritten <= 100) {
+            this.kimya.note = (kimyaWritten * 0.8) + (kimyaVerbal * 0.2);
         }
 
     }

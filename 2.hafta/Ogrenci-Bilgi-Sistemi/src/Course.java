@@ -3,12 +3,15 @@ public class Course {
     String name;
     String code;
     String prefix;
-    int note;
-
+    double note;
+    int verbalExam;
+    int writtenExam;
     public Course(String name, String code, String prefix) {
         this.name = name;
         this.code = code;
         this.prefix = prefix;
+        this.verbalExam = 0;
+        this.writtenExam = 0;
         this.note = 0;
     }
 
