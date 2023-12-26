@@ -12,7 +12,7 @@ public class Main {
         // Matrislerin transpozu
         int[][] transpoz = transpozBul(matris);
         int[][] transpoz2 = transpozBul(matris2);
-        // Matrisi ve transpozunu ekrana yazdırın
+        // Matrisi ve transpozunu ekrana yazdırma
         System.out.println("Matris:");
         matrisiYazdir(matris);
         System.out.println("------");
