@@ -3,12 +3,15 @@ public class Obstacle {
     private String name;
     private int damage;
     private int health;
-
-    public Obstacle(int id, String name,int damage, int health) {
+    private int award;
+    private int orijinalHealth;
+    public Obstacle(int id, String name,int damage, int health,int award) {
         this.id = id;
-        this.name = name;
+        this.name = name    ;
         this.damage = damage;
         this.health = health;
+        this.orijinalHealth = health;
+        this.award = award;
     }
 
     public int getId() {
@@ -27,8 +30,20 @@ public class Obstacle {
         return health;
     }
 
+    public int getAward() {
+        return award;
+    }
+
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setOrijinalHealth(int orijinalHealth) {
+        this.orijinalHealth = orijinalHealth;
+    }
+
+    public int getOrijinalHealth() {
+        return orijinalHealth;
     }
 
     public void setName(String name) {
@@ -41,5 +56,9 @@ public class Obstacle {
 
     public void setHealth(int health) {
         this.health = health;
+    }
+
+    public void setAward(int award) {
+        this.award = award;
     }
 }

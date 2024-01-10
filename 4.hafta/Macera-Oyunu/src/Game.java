@@ -9,6 +9,7 @@ public class Game {
         Player player = new Player(playerName);
         System.out.println("Sayın " + player.getName() + " bu karanlık ve sisli adaya hoşgeldiniz ! Burada yaşananların hepsi gerçek !");
         System.out.println("Lütfen bir karakter seçiniz !");
+        System.out.println("------------------------------");
         player.selectChar();
         Location location = null;
         while(true) {
@@ -21,6 +22,7 @@ public class Game {
             System.out.println("3 - Mağara --> Ödül: <Yemek> , dikkatli ol karşına zombi çıkabilir! ");
             System.out.println("4 - Orman --> Ödül: <Odun> , dikkatli ol karşına vampir çıkabilir! ");
             System.out.println("5 - Nehir --> Ödül: <Su> , dikkatli ol karşına ayı çıkabilir! ");
+            System.out.println("6 - Maden --> Ödül: <Para veya silah> , dikkatli ol karşına yılan çıkabilir! ");
             System.out.println("0 - Çıkış Yap--> Oyunu sonlandır.");
             System.out.println("Lütfen gitmek istediğiniz bölgeyi seçiniz : ");
             int selectLoc = input.nextInt();
@@ -42,6 +44,9 @@ public class Game {
                     break;
                 case 5:
                     location = new River(player);
+                    break;
+                case 6:
+                    location = new Mine(player);
                     break;
                 default:
                     System.out.println("Lütfen geçerli bir bölge giriniz ! ");
