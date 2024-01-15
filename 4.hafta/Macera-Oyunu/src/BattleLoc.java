@@ -67,12 +67,18 @@ public class BattleLoc extends Location{
                     return false;
                 }
             }
-            if(this.getObstacle().getHealth() < this.getPlayer().getHealth()){
-                System.out.println("Düşmanı yendiniz ! ");
-                System.out.println(this.getObstacle().getAward() + " para kazandınız !");
-                this.getPlayer().setMoney(this.getPlayer().getMoney() + this.getObstacle().getAward());
-                System.out.println("Güncel paranız : " + this.getPlayer().getMoney());
-            }else{
+            if (this.getObstacle().getHealth() < this.getPlayer().getHealth()) {
+                System.out.println("Düşmanı Yendiniz ");
+                if (getObstacle().getName().equals("Snake")) {
+                    drop();
+                }else{
+                    System.out.println(this.getObstacle().getAward() + " para kazandınız");
+
+                    this.getPlayer().setMoney(this.getPlayer().getMoney() + this.getObstacle().getAward());
+                    System.out.println("Güncel paranız: " + this.getPlayer().getMoney());
+
+                }
+            } else {
                 return false;
             }
         }
@@ -125,6 +131,65 @@ public class BattleLoc extends Location{
         System.out.println("Hasar : " + this.getObstacle().getDamage());
         System.out.println("Ödül : " + this.getObstacle().getAward());
         System.out.println();
+    }
+    public void drop() {
+        Random r = new Random();
+        int chance = r.nextInt() * 100;
+
+        if (chance < 55) {
+            Random r1 = new Random();
+            int itemchance = r1.nextInt() * 100;
+            if (itemchance <= 30) {
+                int weaponChance = r1.nextInt() * 100;
+                if (weaponChance <= 20) {
+                    getPlayer().getInventory().setWeapon(Weapon.getWeaponObjByID(3));
+                    System.out.println(getPlayer().getInventory().getWeapon().getName() + " kazandiniz.");
+                }
+                if (20 < weaponChance && weaponChance <= 50) {
+                    getPlayer().getInventory().setWeapon(Weapon.getWeaponObjByID(2));
+                    System.out.println(getPlayer().getInventory().getWeapon().getName() + " kazandiniz.");
+                }
+                if (50 < weaponChance) {
+                    getPlayer().getInventory().setWeapon(Weapon.getWeaponObjByID(1));
+                    System.out.println(getPlayer().getInventory().getWeapon().getName() + " kazandiniz.");
+                }
+
+            }
+            if (30 < itemchance && itemchance <= 60) {
+                Random r2 = new Random();
+                int armorChance = r2.nextInt() * 100;
+                if (armorChance <= 20) {
+                    getPlayer().getInventory().setArmor(Armor.getArmorObjByID(3));
+                    System.out.println(getPlayer().getInventory().getArmor().getName() + " ele gecirildi.");
+                }
+                if (20 < armorChance && armorChance <= 50) {
+                    getPlayer().getInventory().setArmor(Armor.getArmorObjByID(2));
+                    System.out.println(getPlayer().getInventory().getArmor().getName() + " ele gecirildi.");
+                }
+                if (50 < armorChance) {
+                    getPlayer().getInventory().setArmor(Armor.getArmorObjByID(1));
+                    System.out.println(getPlayer().getInventory().getArmor().getName() + " ele gecirildi.");
+                }
+            }
+            if (60 < itemchance) {
+                Random r3 = new Random();
+                int goldChance = r3.nextInt() * 100;
+                if (goldChance <= 20) {
+                    getPlayer().setMoney(getPlayer().getMoney() + 10);
+                    System.out.println("10 Altın ele gecirildi.");
+                }
+                if (20 < goldChance && goldChance <= 50) {
+                    getPlayer().setMoney(getPlayer().getMoney() + 5);
+                    System.out.println("5 Altın ele gecirildi.");
+                }
+                if (50 < goldChance) {
+                    getPlayer().setMoney(getPlayer().getMoney() + 1);
+                    System.out.println("1 Altın ele gecirildi.");
+                }
+            }
+        } else {
+            System.out.println("Hiç bir sey kazanamadınız.");
+        }
     }
     public Obstacle getObstacle() {
         return obstacle;

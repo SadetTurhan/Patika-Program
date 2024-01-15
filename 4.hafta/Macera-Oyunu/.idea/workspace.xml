@@ -5,24 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25f440ea-96ed-4441-acb2-696614197486" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Armor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/BattleLoc.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Bear.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Cave.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Forrest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Inventory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Obstacle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/River.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Snake.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Vampire.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Weapon.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Zombie.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Mine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BattleLoc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BattleLoc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bear.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bear.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Forrest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Forrest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Location.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Inventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Obstacle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Obstacle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SafeHouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SafeHouse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ToolStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ToolStore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Snake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Snake.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Vampire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vampire.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Zombie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Zombie.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

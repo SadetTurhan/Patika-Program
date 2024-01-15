@@ -10,6 +10,7 @@ public class Player {
     private String charName;
     Scanner input = new Scanner(System.in);
     private Inventory inventory;
+    private String[] awards = new String[4];
     public Player(String name) {
         this.name = name;
         this.inventory = new Inventory();
@@ -123,5 +124,13 @@ public class Player {
 
     public void setOrijinalHealth(int orijinalHealth) {
         this.orijinalHealth = orijinalHealth;
+    }
+
+    public String[] getAwards() {
+        return awards;
+    }
+
+    public void setAwards(String[] awards) {
+        this.awards = awards;
     }
 }
