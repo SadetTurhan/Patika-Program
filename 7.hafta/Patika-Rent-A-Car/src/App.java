@@ -1,9 +1,9 @@
-import core.Db;
-
-import java.sql.Connection;
+import core.Helper;
+import view.LoginView;
 
 public class App {
     public static void main(String[] args) {
-        Connection con = Db.getInstance();
+        Helper.setTheme();
+        LoginView loginView = new LoginView();
     }
 }
