@@ -29,6 +29,10 @@ public class Helper {
                 msg = "İşlem başarılı ! ";
                 title = "Sonuç !";
             }
+            case "notfound" -> {
+                msg = "Kayıt bulunamadı ";
+                title = "Bulunamadı !";
+            }
             default -> {
                 msg = str;
                 title = "Mesaj";
