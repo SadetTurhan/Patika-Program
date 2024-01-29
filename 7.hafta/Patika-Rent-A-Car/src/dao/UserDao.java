@@ -3,13 +3,15 @@ package dao;
 import core.Db;
 import entity.User;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class UserDao {
     private final Connection con;
-
-    public UserDao() {
+    public UserDao(){
         this.con = Db.getInstance();
     }
     public ArrayList<User> findAll(){
@@ -20,7 +22,7 @@ public class UserDao {
             while(rs.next()){
                 userList.add(this.match(rs));
             }
-        }catch(SQLException e){
+        }catch (SQLException e){
             e.printStackTrace();
         }
         return userList;
@@ -41,7 +43,6 @@ public class UserDao {
         }
         return obj;
     }
-
     public User match(ResultSet rs) throws SQLException{
         User obj = new User();
         obj.setId(rs.getInt("user_id"));
@@ -50,4 +51,5 @@ public class UserDao {
         obj.setRole(rs.getString("user_role"));
         return obj;
     }
+
 }

@@ -16,44 +16,47 @@ public class Helper {
             }
         }
     }
-
-    public static void showMsg(String str) {
+    public static void showMsg(String str){
         String msg;
         String title;
-        switch (str) {
+        switch(str){
             case "fill" -> {
-                msg = "Lütfen tüm alanları dolurunuz !";
-                title = "Hata!";
+                msg = "Lütfen tüm alanları doldurunuz ! ";
+                title = "Hata";
             }
             case "done" -> {
-                msg = "İşlem başarılı ! ";
-                title = "Sonuç !";
+                msg = "İşlem başarılı";
+                title = "Sonuç";
             }
-            case "notfound" -> {
-                msg = "Kayıt bulunamadı ";
-                title = "Bulunamadı !";
+            case "notFound" -> {
+                msg = "Kayıt bulunamadı";
+                title = "Bulunamadı";
             }
             default -> {
                 msg = str;
                 title = "Mesaj";
             }
-        }
-        JOptionPane.showMessageDialog(null, msg, title, JOptionPane.INFORMATION_MESSAGE);
+            }
+        JOptionPane.showMessageDialog(null,msg,title,JOptionPane.INFORMATION_MESSAGE);
     }
     public static boolean isFieldEmpty(JTextField field){
         return field.getText().trim().isEmpty();
     }
-    public static boolean isFieldListEmpty(JTextField[] fieldList){
-        for(JTextField field: fieldList){
-            if(isFieldEmpty(field))return true;
+    public static boolean isFieldListEmpty(JTextField[] fieldList) {
+        for (JTextField field : fieldList) {
+            if (isFieldEmpty(field)) return true;
         }
         return false;
     }
+
     public static int getLocationPoint(String type, Dimension size){
-        return switch (type) {
-            case "x" -> (Toolkit.getDefaultToolkit().getScreenSize().width - size.width) / 2;
-            case "y" -> (Toolkit.getDefaultToolkit().getScreenSize().height - size.height) / 2;
-            default -> 0;
-        };
+        switch (type){
+            case "x":
+                return (Toolkit.getDefaultToolkit().getScreenSize().width - size.width) / 2;
+            case "y":
+                return (Toolkit.getDefaultToolkit().getScreenSize().height - size.height) / 2;
+            default:
+                return 0;
+        }
     }
 }
