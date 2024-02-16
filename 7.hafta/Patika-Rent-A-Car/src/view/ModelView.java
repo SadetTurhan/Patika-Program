@@ -11,24 +11,30 @@ import javax.swing.*;
 
 public class ModelView extends Layout{
     private JPanel container;
-    private JLabel lbl_heading;
-    private JComboBox<ComboItem> cmb_brand;
+    private JButton btn_save;
+    private JLabel lbl_header;
+    private JLabel lbl_brand_name;
     private JTextField fld_model_name;
+    private JLabel lbl_model_name;
     private JTextField fld_model_year;
+    private JLabel lbl_model_year;
+    private JLabel lbl_model_type;
     private JComboBox<Model.Type> cmb_model_type;
+    private JLabel lbl_model_fuel;
     private JComboBox<Model.Fuel> cmb_model_fuel;
+    private JLabel lbl_model_gear;
     private JComboBox<Model.Gear> cmb_model_gear;
-    private JButton btn_model_save;
+    private JComboBox<ComboItem> cmb_brand;
     private Model model;
     private ModelManager modelManager;
     private BrandManager brandManager;
-    public ModelView(Model model) {
+    public ModelView(Model model){
         this.model = model;
         this.modelManager = new ModelManager();
         this.brandManager = new BrandManager();
         this.add(container);
-        this.guiInitialize(300,500);
-        this.cmb_brand.setModel(new DefaultComboBoxModel());
+        guiInitialize(600,500);
+
         for(Brand brand: this.brandManager.findAll()){
             this.cmb_brand.addItem(new ComboItem(brand.getId(), brand.getName()));
         }
@@ -36,17 +42,7 @@ public class ModelView extends Layout{
         this.cmb_model_gear.setModel(new DefaultComboBoxModel<>(Model.Gear.values()));
         this.cmb_model_type.setModel(new DefaultComboBoxModel<>(Model.Type.values()));
 
-        if(this.model.getId() != 0){
-            this.fld_model_year.setText(this.model.getYear());
-            this.fld_model_name.setText(this.model.getName());
-            this.cmb_model_fuel.getModel().setSelectedItem(this.model.getFuel());
-            this.cmb_model_type.getModel().setSelectedItem(this.model.getType());
-            this.cmb_model_gear.getModel().setSelectedItem(this.model.getGear());
-            ComboItem defaultBrand = new ComboItem(this.model.getBrand().getId(), this.model.getBrand().getName());
-            this.cmb_brand.getModel().setSelectedItem(defaultBrand);
-        }
-
-        this.btn_model_save.addActionListener(e -> {
+        this.btn_save.addActionListener(e -> {
             if(Helper.isFieldListEmpty(new JTextField[]{this.fld_model_name,this.fld_model_year})){
                 Helper.showMsg("fill");
             }else{
@@ -64,6 +60,7 @@ public class ModelView extends Layout{
                 }else{
                     result = this.modelManager.save(this.model);
                 }
+
                 if(result){
                     Helper.showMsg("done");
                     dispose();

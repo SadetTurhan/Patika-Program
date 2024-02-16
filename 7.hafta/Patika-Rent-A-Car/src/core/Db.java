@@ -11,28 +11,25 @@ public class Db {
     private final String DB_USERNAME = "postgres";
     private final String DB_PASS = "103389";
 
-    private Db(){
-        try{
-            this.connection = DriverManager.getConnection(
-                    DB_URL,
-                    DB_USERNAME,
-                    DB_PASS
-            );
-        }catch (SQLException e){
-            System.out.println(e.getMessage());
+    private Db() {
+        try {
+            this.connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASS);
+        } catch (SQLException e) {
+            System.out.println(e);
         }
     }
 
     public Connection getConnection() {
         return connection;
     }
+
     public static Connection getInstance(){
-        try {
+        try{
             if (instance == null || instance.getConnection().isClosed()) {
                 instance = new Db();
             }
         }catch (SQLException e){
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
         return instance.getConnection();
     }

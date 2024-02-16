@@ -9,16 +9,16 @@ import javax.swing.*;
 public class BrandView extends Layout{
     private JPanel container;
     private JLabel lbl_brand;
-    private JLabel lbl_brand_name;
     private JTextField fld_brand_name;
+    private JLabel lbl_brand_name;
     private JButton btn_brand_save;
-    private Brand brand;
     private BrandManager brandManager;
+    private Brand brand;
     public BrandView(Brand brand){
         this.brandManager = new BrandManager();
-        this.brand = brand;
         this.add(container);
-        this.guiInitialize(300,200);
+        this.guiInitialize(500,350);
+        this.brand = brand;
 
         if(brand != null){
             this.fld_brand_name.setText(brand.getName());
@@ -44,5 +44,4 @@ public class BrandView extends Layout{
             }
         });
     }
-
 }

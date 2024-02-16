@@ -4,50 +4,47 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Helper {
-    public static void setTheme() {
-        for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-            if ("Nimbus".equals(info.getName())) {
-                try {
+    public static void setTheme(){
+        for(UIManager.LookAndFeelInfo info: UIManager.getInstalledLookAndFeels()){
+            if("Nimbus".equals(info.getName())){
+                try{
                     UIManager.setLookAndFeel(info.getClassName());
-                } catch (Exception e) {
+                }catch (Exception e){
                     System.out.println(e.getMessage());
                 }
                 break;
             }
         }
     }
+
     public static void showMsg(String str){
-        optionPaneTR();
         String msg;
         String title;
-        switch(str){
+
+        switch (str){
             case "fill" -> {
-                msg = "Lütfen tüm alanları doldurunuz ! ";
+                msg = "Tüm alanları doldurunuz !";
                 title = "Hata";
             }
             case "done" -> {
-                msg = "İşlem başarılı";
+                msg = "İşlem Başarılı";
                 title = "Sonuç";
             }
             case "notFound" -> {
                 msg = "Kayıt bulunamadı";
                 title = "Bulunamadı";
             }
-            case "error" -> {
-                msg = "Hatalı işlem yaptınız ! ";
-                title = "Hata ! ";
-            }
             default -> {
                 msg = str;
                 title = "Mesaj";
             }
-            }
+        }
         JOptionPane.showMessageDialog(null,msg,title,JOptionPane.INFORMATION_MESSAGE);
     }
     public static boolean confirm(String str){
         String msg;
-        if(str.equals("sure")){
-            msg = "Bu işlemi yapmak istediğinize emin misiniz?";
+        if (str.equals("sure")){
+            msg = "bu işlemi yapmak istediğinden emin misin?";
         }else{
             msg = str;
         }
@@ -56,13 +53,12 @@ public class Helper {
     public static boolean isFieldEmpty(JTextField field){
         return field.getText().trim().isEmpty();
     }
-    public static boolean isFieldListEmpty(JTextField[] fieldList) {
-        for (JTextField field : fieldList) {
-            if (isFieldEmpty(field)) return true;
+    public static boolean isFieldListEmpty(JTextField[] fieldList){
+        for(JTextField field: fieldList){
+            if(isFieldEmpty(field)) return true;
         }
         return false;
     }
-
     public static int getLocationPoint(String type, Dimension size){
         switch (type){
             case "x":
@@ -72,10 +68,5 @@ public class Helper {
             default:
                 return 0;
         }
-    }
-    public static void optionPaneTR(){
-        UIManager.put("OptionPane.okButtonText","Tamam");
-        UIManager.put("OptionPane.yesButtonText","Evet");
-        UIManager.put("OptionPane.noButtonText","Hayır");
     }
 }

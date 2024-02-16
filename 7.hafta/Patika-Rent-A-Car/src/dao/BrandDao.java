@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public class BrandDao {
     private final Connection con;
+
     public BrandDao(){
         this.con = Db.getInstance();
     }
@@ -19,7 +20,7 @@ public class BrandDao {
         String sql = "SELECT * FROM public.brand ORDER BY brand_id ASC";
         try{
             ResultSet rs = this.con.createStatement().executeQuery(sql);
-            while(rs.next()){
+            while (rs.next()){
                 brandList.add(this.match(rs));
             }
         }catch (SQLException e){
@@ -27,14 +28,6 @@ public class BrandDao {
         }
         return brandList;
     }
-
-    public Brand match(ResultSet rs) throws SQLException{
-        Brand obj = new Brand();
-        obj.setId(rs.getInt("brand_id"));
-        obj.setName(rs.getString("brand_name"));
-        return obj;
-    }
-
     public boolean save(Brand brand){
         String query = "INSERT INTO public.brand (brand_name) VALUES (?)";
         try{
@@ -69,20 +62,26 @@ public class BrandDao {
         }
         return true;
     }
+    public Brand match(ResultSet rs) throws SQLException{
+        Brand obj = new Brand();
+        obj.setId(rs.getInt("brand_id"));
+        obj.setName(rs.getString("brand_name"));
+        return obj;
+    }
     public Brand getById(int id){
-         Brand obj = null;
-         String query = "SELECT * FROM public.brand WHERE brand_id = ?";
-         try{
-             PreparedStatement pr = this.con.prepareStatement(query);
-             pr.setInt(1,id);
-             ResultSet rs = pr.executeQuery();
-             if(rs.next()){
-                 obj = this.match(rs);
-             }
-         }catch (SQLException e){
-             e.printStackTrace();
-         }
-         return obj;
+        Brand obj = null;
+        String query = "SELECT * FROM public.brand WHERE brand_id = ? ";
+        try{
+            PreparedStatement pr = this.con.prepareStatement(query);
+            pr.setInt(1,id);
+            ResultSet rs = pr.executeQuery();
+            if(rs.next()){
+                obj = this.match(rs);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return obj;
     }
 
 }

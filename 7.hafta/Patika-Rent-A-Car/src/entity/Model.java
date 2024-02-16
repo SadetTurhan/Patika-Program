@@ -1,5 +1,7 @@
 package entity;
 
+import core.ComboItem;
+
 public class Model {
     private int id;
     private int brand_id;
@@ -9,22 +11,35 @@ public class Model {
     private Fuel fuel;
     private Gear gear;
     private Brand brand;
-
-    public enum Fuel{
-            GASOLINE,
-            LPG,
-            ELECTRIC,
-            DIESEL
+    public enum Fuel {
+        GASOLINE,
+        LPG,
+        ELECTRIC,
+        DIESEL
     }
-    public enum Gear{
+
+    public enum Gear {
         MANUEL,
         AUTO
     }
-    public enum Type{
+
+    public enum Type {
         SEDAN,
         HACBACK
     }
-    public Model(){}
+    public Model(){
+
+    }
+    public Model(int id, int brand_id, String name, String year, Type type, Fuel fuel, Gear gear, Brand brand) {
+        this.id = id;
+        this.brand_id = brand_id;
+        this.name = name;
+        this.year = year;
+        this.type = type;
+        this.fuel = fuel;
+        this.gear = gear;
+        this.brand = brand;
+    }
 
     public int getId() {
         return id;
@@ -50,20 +65,20 @@ public class Model {
         this.name = name;
     }
 
-    public Type getType() {
-        return type;
-    }
-
-    public void setType(Type type) {
-        this.type = type;
-    }
-
     public String getYear() {
         return year;
     }
 
     public void setYear(String year) {
         this.year = year;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
     }
 
     public Fuel getFuel() {
@@ -88,5 +103,8 @@ public class Model {
 
     public void setBrand(Brand brand) {
         this.brand = brand;
+    }
+    public ComboItem getComboItem(){
+        return new ComboItem(this.getId(),this.getBrand().getName() + " - " + this.getName() + " - " + this.getYear() + " - " + this.getGear());
     }
 }

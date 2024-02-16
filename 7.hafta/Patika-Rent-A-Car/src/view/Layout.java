@@ -9,11 +9,11 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class Layout extends JFrame {
-    public void guiInitialize(int width,int height){
+    public void guiInitialize(int width, int height){
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setTitle("Rent a Car");
-        this.setSize(width, height);
-        this.setLocation(Helper.getLocationPoint("x",this.getSize()),Helper.getLocationPoint("y",this.getSize()));
+        this.setTitle("Rent A Car");
+        this.setSize(width,height);
+        this.setLocation(Helper.getLocationPoint("x",this.getSize()), Helper.getLocationPoint("y",this.getSize()));
         this.setVisible(true);
     }
     public void createTable(DefaultTableModel model, JTable table, Object[] columns, ArrayList<Object[]> rows){
@@ -29,16 +29,13 @@ public class Layout extends JFrame {
         if(rows == null){
             rows = new ArrayList<>();
         }
-
         for(Object[] row: rows){
             model.addRow(row);
         }
     }
-
     public int getTableSelectedRow(JTable table,int index){
-        return  Integer.parseInt(table.getValueAt(table.getSelectedRow(),index).toString());
+        return Integer.parseInt(table.getValueAt(table.getSelectedRow(),index).toString());
     }
-
     public void tableRowSelect(JTable table){
         table.addMouseListener(new MouseAdapter() {
             @Override
