@@ -1,5 +1,6 @@
 package view;
 
+import business.BookManager;
 import business.BrandManager;
 import business.CarManager;
 import business.ModelManager;
@@ -12,10 +13,9 @@ import entity.User;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import javax.swing.text.MaskFormatter;
+import java.awt.event.*;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 public class AdminView extends Layout{
@@ -23,7 +23,7 @@ public class AdminView extends Layout{
     private JLabel lbl_welcome;
     private JPanel pnl_top;
     private JPanel pnl_bottom;
-    private JTabbedPane tab_menu;
+    private JTabbedPane pnl_book;
     private JButton btn_logout;
     private JTable tbl_brand;
     private JScrollPane scl_brand;
@@ -44,22 +44,41 @@ public class AdminView extends Layout{
     private JPanel pnl_car;
     private JTable tbl_car;
     private JScrollPane scl_car;
+    private JTable tbl_book;
+    private JScrollPane scl_book;
+    private JTextField fld_start_date;
+    private JTextField fld_finish_date;
+    private JComboBox cmb_gear_type;
+    private JComboBox cmb_fuel_type;
+    private JComboBox cmb_car_type;
+    private JButton btn_search_booking;
+    private JLabel lbl_start_date;
+    private JLabel lbl_finish_date;
+    private JLabel lbl_gear_type;
+    private JLabel lbl_fuel_type;
+    private JLabel lbl_car_type;
+    private JButton btn_booking_cancel;
     private JLabel Tip;
     private User user;
     private BrandManager brandManager;
     private JPopupMenu brandMenu = new JPopupMenu();
     private JPopupMenu modelMenu = new JPopupMenu();
     private JPopupMenu carMenu = new JPopupMenu();
+    private JPopupMenu bookingMenu = new JPopupMenu();
     private ModelManager modelManager;
     private DefaultTableModel tmdl_brand = new DefaultTableModel();
     private DefaultTableModel tmdl_model = new DefaultTableModel();
     private CarManager carManager;
     private DefaultTableModel tmdl_car = new DefaultTableModel();
     private Object[] col_model;
+    private BookManager bookManager;
+    private DefaultTableModel tmdl_booking = new DefaultTableModel();
+    private Object[] col_car;
     public AdminView(User user){
         this.brandManager = new BrandManager();
         this.modelManager = new ModelManager();
         this.carManager = new CarManager();
+        this.bookManager = new BookManager();
         this.add(container);
         this.guiInitialize(800,600);
         this.user = user;
@@ -77,12 +96,53 @@ public class AdminView extends Layout{
         loadCarTable();
         loadCarComponent();
 
+        loadBookingTable(null);
+        loadBookingComponent();
+        loadBookingFilter();
+
+
         tbl_brand.setModel(tmdl_brand);
         tbl_brand.getTableHeader().setReorderingAllowed(false);
         tbl_brand.setEnabled(false);
 
-
-
+    }
+    public void loadBookingComponent(){
+        tableRowSelect(this.tbl_book);
+        this.bookingMenu = new JPopupMenu();
+        this.bookingMenu.add("Rezervasyon Yap").addActionListener(e -> {
+            int selectCarId = this.getTableSelectedRow(this.tbl_book,0);
+            BookView bookView = new BookView(
+                    this.carManager.getById(selectCarId),
+                    this.fld_start_date.getText(),
+                    this.fld_finish_date.getText());
+        });
+        this.tbl_book.setComponentPopupMenu(bookingMenu);
+        btn_search_booking.addActionListener(e ->{
+            ArrayList<Car> carList = this.carManager.searchForBooking(
+                    fld_start_date.getText(),
+                    fld_finish_date.getText(),
+                    (Model.Type) cmb_car_type.getSelectedItem(),
+                    (Model.Gear) cmb_gear_type.getSelectedItem(),
+                    (Model.Fuel) cmb_fuel_type.getSelectedItem()
+            );
+            ArrayList<Object[]> carBookingRow = this.carManager.getForTable(col_car.length,carList);
+            loadBookingTable(carBookingRow);
+        });
+        btn_booking_cancel.addActionListener(e -> {
+            loadBookingFilter();
+        });
+    }
+    public void loadBookingTable(ArrayList<Object[]> carList){
+        Object[] col_booking_list = {"ID","Marka","Model","Plaka","Renk","KM","Yıl","Tip","Yakıt Türü","Vites"};
+        createTable(this.tmdl_booking,this.tbl_book,col_booking_list,carList);
+    }
+    public void loadBookingFilter(){
+        this.cmb_gear_type.setModel(new DefaultComboBoxModel<>(Model.Gear.values()));
+        this.cmb_gear_type.setSelectedItem(null);
+        this.cmb_car_type.setModel(new DefaultComboBoxModel<>(Model.Type.values()));
+        this.cmb_car_type.setSelectedItem(null);
+        this.cmb_fuel_type.setModel(new DefaultComboBoxModel<>(Model.Fuel.values()));
+        this.cmb_fuel_type.setSelectedItem(null);
     }
     public void loadBrandTable(){
         Object[] col_brand = {"Marka ID","Marka Adı"};
@@ -255,8 +315,14 @@ public class AdminView extends Layout{
         this.tbl_car.setComponentPopupMenu(carMenu);
     }
     public void loadCarTable(){
-        Object[] col_car = {"ID","Marka","Model","Plaka","Renk","KM","Yıl","Tip","Yakıt Türü"," Vites"};
+       col_car = new Object[]{"ID","Marka","Model","Plaka","Renk","KM","Yıl","Tip","Yakıt Türü"," Vites"};
         ArrayList<Object[]> carList = this.carManager.getForTable(col_car.length,this.carManager.findAll());
         createTable(this.tmdl_car,this.tbl_car,col_car,carList);
+    }
+    private void createUIComponents() throws ParseException {
+        this.fld_start_date = new JFormattedTextField(new MaskFormatter("##/##/####"));
+        this.fld_start_date.setText("10/10/2023");
+        this.fld_finish_date = new JFormattedTextField(new MaskFormatter("##/##/####"));
+        this.fld_finish_date.setText("13/10/2023");
     }
 }
