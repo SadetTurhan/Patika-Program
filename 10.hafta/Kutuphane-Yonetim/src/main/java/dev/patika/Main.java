@@ -19,7 +19,6 @@ public class Main {
         author.setBirthYear(LocalDate.of(1892,01,03));
         entityManager.persist(author);
 
-
         Category category = new Category();
         category.setName("fantasy");
         category.setDescription("A genre which generally has different magical elements like dragons and knights");
@@ -31,7 +30,6 @@ public class Main {
         publisher.setEstablishmentYear(1911);
         entityManager.persist(publisher);
 
-
         Book book = new Book();
         book.setName("The Lord of The Rings");
         book.setStock(5);
@@ -42,16 +40,7 @@ public class Main {
         List<Category> categoryList = new ArrayList<>();
         categoryList.add(category);
         book.setCategoryList(categoryList);
-        List<BookBorrowing> bookBorrowingList = new ArrayList<>();
-        book.setBookBorrowing(bookBorrowingList);
         entityManager.persist(book);
-
-        BookBorrowing bookBorrowing = new BookBorrowing();
-        bookBorrowing.setBorrowerName("George Martin");
-        bookBorrowing.setBook(book);
-        bookBorrowing.setBorrowingDate(LocalDate.of(2024,02,10));
-        bookBorrowing.setReturningDate(LocalDate.of(2024,02,17));
-        entityManager.persist(bookBorrowing);
 
         transaction.commit();
     }

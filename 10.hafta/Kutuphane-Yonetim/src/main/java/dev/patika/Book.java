@@ -33,7 +33,7 @@ public class Book {
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     private List<Category> categoryList;
-    @OneToMany(mappedBy = "book", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "book")
     private List<BookBorrowing> bookBorrowing;
     public Book() {
     }
